@@ -44,7 +44,14 @@ class DiscountSend extends Command
             $email .= '@'.(strlen($email) == 7 ? 'students.lu.lv' : 'lu.lv');
         }
 
-        Discount::findByEmail($email)->mail($email);
+        $discount = Discount::findByEmail($email);
+
+        if (!$discount) {
+            $this->info('Discount was not issued for '.$email);
+            return 0;
+        }
+
+        $discount->mail($email);
         $this->info('Discount sent to: '.$email);
     }
 }
