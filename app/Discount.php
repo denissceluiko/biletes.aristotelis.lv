@@ -80,4 +80,14 @@ class Discount extends Model
         Notification::route('mail', $email)
             ->notify(new DiscountIssued($this));
     }
+
+    public static function getGenerated()
+    {
+        return self::all()->count();
+    }
+
+    public static function getSent()
+    {
+        return self::whereNotNull('sent_at')->count();
+    }
 }
