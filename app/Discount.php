@@ -25,6 +25,13 @@ class Discount extends Model
         return Discount::create(['code' => Str::random(10)]);
     }
 
+    public static function formatRecipient($email)
+    {
+        list($prefix, $suffix) = explode('@', $email);
+
+        return strlen($prefix) == 7 ? $prefix.'@students.lu.lv' : $email;
+    }
+
     public function scopeCode(Builder $query, $code)
     {
         return $query->where('code', $code);
@@ -71,6 +78,7 @@ class Discount extends Model
     {
         if ($this->sent_at && $this->sent_at->diffInHours(Carbon::now()) < 3) return;
 
+        $email = self::formatRecipient($email);
         $this->mail($email);
         $this->update(['sent_at' => Carbon::now()]);
     }

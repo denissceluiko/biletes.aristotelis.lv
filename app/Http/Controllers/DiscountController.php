@@ -19,8 +19,6 @@ class DiscountController extends Controller
             'email' => ['required', 'email', new CanRecieveDiscount]
         ]);
 
-        // check @lu.lv
-
         $discount = Discount::issue($request->email);
 
         $discount->send($request->email);
