@@ -15,7 +15,7 @@ class Discount extends Model
     protected $dates = ['issued_at', 'sent_at'];
 
     public static $permittedRecievers = [
-        'student.lu.lv',
+        'students.lu.lv',
         'edu.lu.lv',
         'lu.lv',
     ];
