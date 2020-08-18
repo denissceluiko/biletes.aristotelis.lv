@@ -71,9 +71,13 @@ class Discount extends Model
     {
         if ($this->sent_at && $this->sent_at->diffInHours(Carbon::now()) < 3) return;
 
+        $this->mail($email);
+        $this->update(['sent_at' => Carbon::now()]);
+    }
+
+    public function mail($email)
+    {
         Notification::route('mail', $email)
             ->notify(new DiscountIssued($this));
-
-        $this->update(['sent_at' => Carbon::now()]);
     }
 }
