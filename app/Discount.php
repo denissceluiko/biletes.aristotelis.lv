@@ -16,6 +16,7 @@ class Discount extends Model
 
     public static $permittedRecievers = [
         'student.lu.lv',
+        'edu.lu.lv',
         'lu.lv',
     ];
 
