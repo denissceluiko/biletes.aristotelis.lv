@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'DiscountController@application')->name('home');
+
+Route::get('/apply', function() {
+    return redirect()->route('home');
+});
+
 Route::post('/apply', 'DiscountController@apply');
 
 //Auth::routes();
