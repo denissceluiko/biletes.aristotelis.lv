@@ -21,4 +21,15 @@ Route::get('/apply', function() {
 
 Route::post('/apply', 'DiscountController@apply');
 
+
+Route::group(['prefix' => 'invite'], function() {
+    Route::get('show/{invite}','InviteController@redeem')->name('invite.show');
+});
+
+Route::group(['prefix' => 'person'], function() {
+    Route::get('create/{invite?}', 'PersonController@create')->name('person.create');
+    Route::post('store', 'PersonController@store')->name('person.store');
+    Route::get('show/{person}','PersonController@show')->name('person.show');
+});
+
 //Auth::routes();
