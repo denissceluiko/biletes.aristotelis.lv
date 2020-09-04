@@ -22,7 +22,7 @@ class CreatePeopleTable extends Migration
             $table->string('code');
             $table->string('level');
             $table->bigInteger('invite_id')->nullable();
-            $table->timestamp('scanned_at');
+            $table->timestamp('scanned_at')->nullable();
             $table->timestamps();
         });
     }

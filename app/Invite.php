@@ -7,12 +7,14 @@ use Illuminate\Support\Str;
 
 class Invite extends Model
 {
-    protected $guarded = [];
+    protected $guarded = ['data'];
 
 
     public function encode(array $attributes = [])
     {
-        $this->update(['data' => json_encode($attributes)]);
+        $this->data = json_encode($attributes);
+        $this->save();
+        return $this;
     }
 
     public function decode()

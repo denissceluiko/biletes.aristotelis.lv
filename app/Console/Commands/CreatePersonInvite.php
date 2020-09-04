@@ -5,21 +5,21 @@ namespace App\Console\Commands;
 use App\Invite;
 use Illuminate\Console\Command;
 
-class CreateInvite extends Command
+class CreatePersonInvite extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'invite:create {redeems : How many times a code can be redeemed} {name*}';
+    protected $signature = 'invite:person {name} {surname} {email} {level} {phone?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create an invite';
+    protected $description = 'Create a personal invite';
 
     /**
      * Create a new command instance.
@@ -38,11 +38,12 @@ class CreateInvite extends Command
      */
     public function handle()
     {
-
         $invite = Invite::create([
-            'name' => implode(' ', $this->argument('name')),
-            'redeems' => $this->argument('redeems'),
+            'name' => $this->argument('name').' '.$this->argument('surname'),
+            'type' => 'person',
+            'redeems' => 1,
         ]);
+        $invite->encode($this->arguments());
 
         $this->info(route('invite.show', $invite));
         return 0;
