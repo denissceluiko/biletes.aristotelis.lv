@@ -3,11 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class Invite extends Model
 {
+    use HasCode;
+
     protected $guarded = ['data'];
+    protected $hidden = ['data'];
+    protected $dataDecoded = null;
 
 
     public function encode(array $attributes = [])
@@ -19,7 +22,7 @@ class Invite extends Model
 
     public function decode()
     {
-        return json_decode($this->data);
+        return isset($this->data) ? json_decode($this->data, true) : [];
     }
 
     public static function create(array $attributes = [])
@@ -32,17 +35,32 @@ class Invite extends Model
         return static::query()->create($attributes);
     }
 
-    public static function newCode()
+    public function people()
     {
-        do {
-            $tmp = Str::random(20);
-        } while (Invite::byCode($tmp));
-
-        return $tmp;
+        return $this->hasMany(Person::class);
     }
 
-    public static function byCode(string $code)
+    public function getRouteKeyName()
     {
-        return static::where('code', $code)->first();
+        return 'code';
+    }
+
+    public function data($key)
+    {
+        if ($this->dataDecoded == null) {
+            $this->dataDecoded = $this->decode();
+        }
+
+        return $this->dataDecoded[$key] ?? null;
+    }
+
+    public function isSaved()
+    {
+        return $this->exists;
+    }
+
+    public function isRedeemable()
+    {
+        return $this->people()->count() <= $this->redeems;
     }
 }

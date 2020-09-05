@@ -12,7 +12,7 @@ class CreateGroupInvite extends Command
      *
      * @var string
      */
-    protected $signature = 'invite:group {redeems : How many times a code can be redeemed} {name*}';
+    protected $signature = 'invite:group {redeems : How many times a code can be redeemed} {level : free, regular, vip, svip, org} {name*}';
 
     /**
      * The console command description.
@@ -42,6 +42,10 @@ class CreateGroupInvite extends Command
             'name' => implode(' ', $this->argument('name')),
             'type' => 'group',
             'redeems' => $this->argument('redeems'),
+        ]);
+
+        $invite->encode([
+            'level' => $this->argument('level'),
         ]);
 
         $this->info(route('invite.show', $invite));

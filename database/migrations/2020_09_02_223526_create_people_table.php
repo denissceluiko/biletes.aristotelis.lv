@@ -20,9 +20,9 @@ class CreatePeopleTable extends Migration
             $table->string('email');
             $table->string('phone')->nullable();
             $table->string('code');
-            $table->string('level');
+            $table->string('level')->nullable();
             $table->bigInteger('invite_id')->nullable();
-            $table->timestamp('scanned_at')->nullable();
+            $table->timestamp('arrived_at')->nullable();
             $table->timestamps();
         });
     }
