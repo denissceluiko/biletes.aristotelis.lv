@@ -11,7 +11,7 @@ class PersonController extends Controller
 {
     public function create()
     {
-        $invite = [];
+        $invite = new Invite;
         return view('person.create', compact('invite'));
     }
 
@@ -30,6 +30,8 @@ class PersonController extends Controller
         if ($request->has('invite_id'))
         {
             $person->process(Invite::find($request->invite_id));
+        } else {
+            $person->elevate('free');
         }
 
         return redirect()->route('person.show', $person);

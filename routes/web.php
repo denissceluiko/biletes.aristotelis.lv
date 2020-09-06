@@ -30,6 +30,7 @@ Route::group(['prefix' => 'invite'], function() {
 Route::group(['prefix' => 'person'], function() {
     Route::get('create', 'PersonController@create')->name('person.create');
     Route::post('store', 'PersonController@store')->name('person.store');
+    Route::post('attend', 'PersonController@attend')->name('person.attend');
     Route::get('{person}','PersonController@show')->name('person.show');
 });
 

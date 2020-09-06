@@ -8,7 +8,7 @@ class Invite extends Model
 {
     use HasCode;
 
-    protected $guarded = ['data'];
+    protected $fillable = ['name', 'code', 'type', 'redeems'];
     protected $hidden = ['data'];
     protected $dataDecoded = null;
 
@@ -45,7 +45,7 @@ class Invite extends Model
         return 'code';
     }
 
-    public function data($key)
+    public function param($key)
     {
         if ($this->dataDecoded == null) {
             $this->dataDecoded = $this->decode();

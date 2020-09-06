@@ -18,32 +18,32 @@
                     <p>Reģistrējoties saņemsi uz savu e-pastu kodu, kas būs jāuzrāda pie ieejas.</p>
                     {{ Form::open(['action' => 'PersonController@store']) }}
                         @if($invite->isSaved())
-                            {{ Form::hidden('invite_id', $invite['id']) }}
+                            {{ Form::hidden('invite_id', $invite->id) }}
                         @endif
                         <div class="form-group">
                             {{ Form::label('name', 'Vārds') }}
-                            {{ Form::text('name', $invite['name'], ['class' => 'form-control mb-3', 'required']) }}
+                            {{ Form::text('name', $invite->param('name'), ['class' => 'form-control mb-3', 'required']) }}
                             @if ($errors->has('name'))
                                 <small class="form-text text-danger">{{ $errors->first('name') }}</small>
                             @endif
                         </div>
                         <div class="form-group">
                             {{ Form::label('surname', 'Uzvārds') }}
-                            {{ Form::text('surname', $invite['surname'], ['class' => 'form-control mb-3', 'required']) }}
+                            {{ Form::text('surname', $invite->param('surname'), ['class' => 'form-control mb-3', 'required']) }}
                             @if ($errors->has('surname'))
                                 <small class="form-text text-danger">{{ $errors->first('surname') }}</small>
                             @endif
                         </div>
                         <div class="form-group">
                             {{ Form::label('email', 'E-pasts') }}
-                            {{ Form::text('email', $invite['email'], ['class' => 'form-control mb-3', 'required']) }}
+                            {{ Form::text('email', $invite->param('email'), ['class' => 'form-control mb-3', 'required']) }}
                             @if ($errors->has('email'))
                                 <small class="form-text text-danger">{{ $errors->first('email') }}</small>
                             @endif
                         </div>
                         <div class="form-group">
                             {{ Form::label('phone', 'Telefons') }}
-                            {{ Form::text('phone', $invite['phone'], ['class' => 'form-control mb-3', 'required']) }}
+                            {{ Form::text('phone', $invite->param('phone'), ['class' => 'form-control mb-3', 'required']) }}
                             @if ($errors->has('phone'))
                                 <small class="form-text text-danger">{{ $errors->first('phone') }}</small>
                             @endif

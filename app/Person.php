@@ -2,6 +2,8 @@
 
 namespace App;
 
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
@@ -35,6 +37,7 @@ class Person extends Model
         if (!key_exists($level, static::$levels))
             return $this;
         $this->level = $level;
+        $this->save();
         return $this;
     }
 
@@ -50,6 +53,19 @@ class Person extends Model
     {
         $attributes['code'] = $attributes['code'] ?? static::newCode();
         return static::query()->create($attributes);
+    }
+
+    public function qrCode()
+    {
+        $options = new QROptions([
+            'version'    => 5,
+            'outputType' => QRCode::OUTPUT_IMAGE_PNG,
+            'eccLevel'   => QRCode::ECC_M,
+        ]);
+
+        $qrcode = new QRCode($options);
+
+        return $qrcode->render($this->code);
     }
 
     public function getRouteKeyName()
