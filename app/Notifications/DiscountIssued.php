@@ -46,7 +46,7 @@ class DiscountIssued extends Notification implements ShouldQueue
                     ->subject('Tavs atlaides kods Aristotelim')
                     ->greeting('Tavs atlaižu kods Aristoteļa vakara daļas biļetei')
                     ->line($this->discount->code)
-                    ->action('Pirkt biļeti', 'https://www.bezrindas.lv/lv/aristotelis-2020/8409/47261')
+                    ->action('Pirkt biļeti', env('TICKET_LINK'))
                     ->line('Jautājumu vai neskaidrību gadījumā raksti uz aristotelis@lusp.lv')
                     ->replyTo('aristotelis@lusp.lv');
     }

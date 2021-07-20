@@ -13,7 +13,7 @@
                     {{ Form::open(['action' => 'DiscountController@apply']) }}
                     <div class="form-group">
                         {{ Form::label('email', 'E-pasts', ['class' => '']) }}
-                        {{ Form::text('email', null, ['class' => 'form-control mb-3', 'required']) }}
+                        {{ Form::email('email', null, ['class' => 'form-control mb-3', 'required']) }}
                         @if ($errors->has('email'))
                             <small class="form-text text-danger">{{ $errors->first('email') }}</small>
                         @endif
