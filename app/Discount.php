@@ -12,7 +12,10 @@ use Illuminate\Support\Str;
 class Discount extends Model
 {
     protected $fillable = ['code', 'email', 'issued_at', 'sent_at'];
-    protected $dates = ['issued_at', 'sent_at'];
+    protected $casts = [
+        'issued_at' => 'datetime', 
+        'sent_at' => 'datetime',
+    ];
 
     public static $permittedRecievers = [
         'students.lu.lv',
