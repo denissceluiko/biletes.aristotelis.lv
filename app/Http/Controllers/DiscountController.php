@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Discount;
+use App\Models\Discount;
 use App\Rules\CanRecieveDiscount;
 use Illuminate\Http\Request;
 

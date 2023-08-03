@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Invite;
+use App\Models\Invite;
 use Illuminate\Console\Command;
 
 class CreatePersonInvite extends Command

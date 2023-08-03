@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Invite;
+use App\Models\Invite;
 
 class InviteController extends Controller
 {

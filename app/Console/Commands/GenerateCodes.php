@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Discount;
+use App\Models\Discount;
 use Illuminate\Console\Command;
 
 class GenerateCodes extends Command

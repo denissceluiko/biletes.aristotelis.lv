@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Invite;
-use App\Person;
+use App\Models\Invite;
+use App\Models\Person;
 use App\Rules\InviteIsRedeemable;
 use Illuminate\Http\Request;
 
