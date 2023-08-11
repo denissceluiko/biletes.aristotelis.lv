@@ -5,12 +5,16 @@ namespace App\Models;
 use App\Notifications\DiscountIssued;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 class Discount extends Model
 {
+    use HasFactory;
+    
     protected $fillable = ['code', 'email', 'issued_at', 'sent_at'];
     protected $casts = [
         'issued_at' => 'datetime', 
@@ -23,9 +27,13 @@ class Discount extends Model
         'lu.lv',
     ];
 
-    public static function make() : Discount
+    public static function generate(int $count = 1) : bool
     {
-        return Discount::create(['code' => Str::random(10)]);
+        $codes = collect()->times($count, function () {
+            return ['code' => Str::random(10)];
+        });
+
+        return Discount::insert($codes->toArray());
     }
 
     public static function formatRecipient($email)
