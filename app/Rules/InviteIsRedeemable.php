@@ -2,7 +2,7 @@
 
 namespace App\Rules;
 
-use App\Invite;
+use App\Models\Invite;
 use Illuminate\Contracts\Validation\Rule;
 
 class InviteIsRedeemable implements Rule

@@ -2,7 +2,7 @@
 
 namespace App\Rules;
 
-use App\Discount;
+use App\Models\Discount;
 use Illuminate\Contracts\Validation\Rule;
 
 class CanRecieveDiscount implements Rule

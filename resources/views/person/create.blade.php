@@ -16,40 +16,40 @@
                     @endif
                     <h5 class="card-title">Ievadi savus datus</h5>
                     <p>Reģistrējoties saņemsi uz savu e-pastu kodu, kas būs jāuzrāda pie ieejas.</p>
-                    {{ Form::open(['action' => 'PersonController@store']) }}
+                    {{ html()->form('POST')->route('person.store')}}
                         @if($invite->isSaved())
-                            {{ Form::hidden('invite_id', $invite->id) }}
+                            {{ html()->hidden('invite_id', $invite->id)}}
                         @endif
                         <div class="form-group">
-                            {{ Form::label('name', 'Vārds') }}
-                            {{ Form::text('name', $invite->param('name'), ['class' => 'form-control mb-3', 'required']) }}
+                            {{ html()->label('Vārds', 'name')}}
+                            {{ html()->text('name', $invite->param('name'))->class('form-control mb-3')->required() }}
                             @if ($errors->has('name'))
                                 <small class="form-text text-danger">{{ $errors->first('name') }}</small>
                             @endif
                         </div>
                         <div class="form-group">
-                            {{ Form::label('surname', 'Uzvārds') }}
-                            {{ Form::text('surname', $invite->param('surname'), ['class' => 'form-control mb-3', 'required']) }}
+                            {{ html()->label('Uzvārds', 'surname')}}
+                            {{ html()->text('surname', $invite->param('surname'))->class('form-control mb-3')->required() }}
                             @if ($errors->has('surname'))
                                 <small class="form-text text-danger">{{ $errors->first('surname') }}</small>
                             @endif
                         </div>
                         <div class="form-group">
-                            {{ Form::label('email', 'E-pasts') }}
-                            {{ Form::text('email', $invite->param('email'), ['class' => 'form-control mb-3', 'required']) }}
+                            {{ html()->label('E-pasts', 'email')}}
+                            {{ html()->email('email', $invite->param('email'))->class('form-control mb-3')->required() }}
                             @if ($errors->has('email'))
                                 <small class="form-text text-danger">{{ $errors->first('email') }}</small>
                             @endif
                         </div>
                         <div class="form-group">
-                            {{ Form::label('phone', 'Telefons') }}
-                            {{ Form::text('phone', $invite->param('phone'), ['class' => 'form-control mb-3', 'required']) }}
+                            {{ html()->label('Telefons', 'phone')}}
+                            {{ html()->text('phone', $invite->param('phone'))->class('form-control mb-3')->required() }}
                             @if ($errors->has('phone'))
                                 <small class="form-text text-danger">{{ $errors->first('phone') }}</small>
                             @endif
                         </div>
-                    {{ Form::submit('Saņemt', ['class' => 'form-control btn btn-primary']) }}
-                    {{ Form::close() }}
+                    {{ html()->submit('Saņemt')->class('form-control btn btn-primary') }}
+                    {{ html()->form()->close() }}
                 </div>
             </div>
             <p>Latvijas Universitātes Studentu padome veic apmeklētāju reģistrāciju un uzskaiti studentu svētkos "Aristotelis", lai ievērtotu <a href="http://likumi.lv/ta/id/315304-epidemiologiskas-drosibas-pasakumi-covid-19-infekcijas-izplatibas-ierobezosanai">09.06.2020. Ministru kabinta noteikumus Nr. 360</a>.</p>

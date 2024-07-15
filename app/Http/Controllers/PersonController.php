@@ -17,6 +17,8 @@ class PersonController extends Controller
 
     public function store(Request $request)
     {
+        return response(status: 404);
+        
         $this->validate($request, [
             'name' => 'required|min:3',
             'surname' => 'required|min:3',

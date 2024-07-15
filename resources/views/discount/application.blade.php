@@ -10,16 +10,16 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Saņem savu atlaides kodu</h5>
-                    {{ Form::open(['action' => 'DiscountController@apply']) }}
+                    {{ html()->form('POST')->route('discount.apply')->open() }}
                     <div class="form-group">
-                        {{ Form::label('email', 'E-pasts', ['class' => '']) }}
-                        {{ Form::email('email', null, ['class' => 'form-control mb-3', 'required']) }}
+                        {{ html()->label('E-pasts', 'email')}}
+                        {{ html()->email('email')->class('form-control mb-3')->required() }}
                         @if ($errors->has('email'))
                             <small class="form-text text-danger">{{ $errors->first('email') }}</small>
                         @endif
                     </div>
-                    {{ Form::submit('Saņemt', ['class' => 'form-control btn btn-primary']) }}
-                    {{ Form::close() }}
+                    {{ html()->submit('Saņemt')->class('form-control btn btn-primary') }}
+                    {{ html()->form()->close() }}
                 </div>
             </div>
             <p>Neskaidrību gadījumā droši raksti uz <a href="mailto:aristotelis@lusp.lv">aristotelis@lusp.lv</a> </p>

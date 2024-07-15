@@ -22,7 +22,7 @@ Route::get('/apply', function() {
     return redirect()->route('home');
 });
 
-Route::post('/apply', [DiscountController::class, 'apply']);
+Route::post('/apply', [DiscountController::class, 'apply'])->name('discount.apply');
 
 
 Route::group(['prefix' => 'invite'], function() {
