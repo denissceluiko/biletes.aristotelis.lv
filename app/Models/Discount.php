@@ -75,12 +75,17 @@ class Discount extends Model
         return self::email(self::cleanEmail($email))->first() ?? null;
     }
 
-    public static function issue($email) : Discount
+    public static function issue($email) : ?Discount
     {
         $discount = self::findByEmail($email);
         if ($discount) return $discount;
 
         $discount = Discount::free()->first();
+
+        if (!$discount) {
+            return null;
+        }
+        
         $discount->update(['email' => self::cleanEmail($email), 'issued_at' => Carbon::now()]);
         return $discount;
     }

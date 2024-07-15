@@ -21,6 +21,10 @@ class DiscountController extends Controller
 
         $discount = Discount::issue($request->email);
 
+        if (!$discount) {
+            return view('discount.none-available');
+        }
+
         $discount->send($request->email);
 
         return view('discount.apply', compact('discount'));
