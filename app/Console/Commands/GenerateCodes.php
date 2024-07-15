@@ -45,7 +45,7 @@ class GenerateCodes extends Command
 
         for ($i=0; $i<$count; $i++)
         {
-            $discount = Discount::create();
+            $discount = Discount::generate();
             $bar->advance();
         }
 
