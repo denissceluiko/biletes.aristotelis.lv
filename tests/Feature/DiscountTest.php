@@ -8,14 +8,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class DiscountTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_generate_discounts(): void
     {
         Discount::generate(10);
@@ -23,9 +22,7 @@ class DiscountTest extends TestCase
         $this->assertDatabaseCount('discounts', 10);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_issue_a_discount(): void
     {
         $email = 'aa12345@students.lu.lv';
@@ -39,9 +36,7 @@ class DiscountTest extends TestCase
         ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_will_issue_only_one_discount_per_email(): void
     {
         $email = 'aa12345@students.lu.lv';
@@ -55,9 +50,7 @@ class DiscountTest extends TestCase
         $this->assertTrue($d1->is($d2));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_send_a_discount(): void
     {
         Notification::fake();

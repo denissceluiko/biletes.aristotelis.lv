@@ -25,16 +25,16 @@ Route::get('/apply', function() {
 Route::post('/apply', [DiscountController::class, 'apply'])->name('discount.apply');
 
 
-Route::group(['prefix' => 'invite'], function() {
-    Route::get('show/{invite}', [InviteController::class, 'show'])->name('invite.show');
-    Route::get('redeem/{invite}',[InviteController::class, 'redeem'])->name('invite.redeem');
-});
+// Route::group(['prefix' => 'invite'], function() {
+//     Route::get('show/{invite}', [InviteController::class, 'show'])->name('invite.show');
+//     Route::get('redeem/{invite}',[InviteController::class, 'redeem'])->name('invite.redeem');
+// });
 
-Route::group(['prefix' => 'person'], function() {
-    Route::get('create', [PersonController::class, 'create'])->name('person.create');
-    Route::post('store', [PersonController::class, 'store'])->name('person.store');
-    Route::post('attend', [PersonController::class, 'attend'])->name('person.attend');
-    Route::get('{person}',[PersonController::class, 'show'])->name('person.show');
-});
+// Route::group(['prefix' => 'person'], function() {
+//     Route::get('create', [PersonController::class, 'create'])->name('person.create');
+//     Route::post('store', [PersonController::class, 'store'])->name('person.store');
+//     Route::post('attend', [PersonController::class, 'attend'])->name('person.attend');
+//     Route::get('{person}',[PersonController::class, 'show'])->name('person.show');
+// });
 
 //Auth::routes();
